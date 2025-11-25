@@ -1,6 +1,4 @@
-package lec_2;
 
-//import java.util.Objects;
 
 
 class hello{

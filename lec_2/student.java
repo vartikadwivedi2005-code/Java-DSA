@@ -1,7 +1,4 @@
-package lec_2;
-
-
-class main{     //main class
+class Main{     //main class
 
     public static void main(String[] args){
         Student Student1=new Student("Vartika Shukla",100,90);
