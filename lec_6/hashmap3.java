@@ -1,8 +1,8 @@
 import java.util.*;   //importing util package to use hashmap.
 class Main{
     public static void main(String[] args){
-        int arr[]={2,7,5,4};
-        int target=9;
+        int arr[]={2,7,5,4};    //input array
+        int target=9;   //target sum
         HashMap<Integer,Integer> map=new HashMap<>();   //key->Integer , value
         for(int i=0;i<arr.length;i++){
             int diff=target-arr[i];
