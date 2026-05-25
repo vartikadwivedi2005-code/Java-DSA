@@ -74,5 +74,6 @@ public class LinkedList {
         
         // System.out.println("\nTrying to delete from empty list:");
         // list.deleteFirst(); // Output: List is empty, nothing to delete
+    
     }
 }
