@@ -1,39 +1,49 @@
-import java.util.ArrayList;   //importing only ArrayList class from util package
-class Main{
+import java.util.ArrayList;
+
+class Main {
     public static void main(String[] args) {
-        ArrayList<Integer> list=new ArrayList<>();    //CURD - create, update, read, delete
-        ArrayList<Integer> list1=new ArrayList<>();
-        ArrayList<Integer> list2=new ArrayList<>(10); //initial capacity
+        ArrayList<Integer> list = new ArrayList<>();    
+        ArrayList<Integer> list1 = new ArrayList<>();
+        ArrayList<Integer> list2 = new ArrayList<>(10); // Initial capacity of 10
+
         list1.add(50);
-        list.add(5);  //O(1)
-        list.add(10);
-        list.add(1,30); //O(n)
+        
+        // --- CREATE ---
+        list.add(5);     // O(1)
+        list.add(10);    // O(1)
+        list.add(1, 30); // O(n) -> Requires shifting elements to the right. List is now [5, 30, 10]
+        
         list2.add(100);
         list2.add(200);
 
-        //int first=list.get(0); //O(1)
-        //int last=list.get(list.size()-1); //O(1)     [5, 30, 10],30
+        // --- UPDATE ---
+        list.set(1, 100); // O(1) -> Directly replaces index 1. List is now [5, 100, 10]
 
+        // --- BULK ADD ---
+        list.addAll(list1);   // O(m) where m is size of list1
+        list.addAll(list2);   // List becomes: [5, 100, 10, 50, 100, 200]
+
+        // --- DELETE ---
+        list.remove(0); // O(n) -> Shifts everything left. List is now [100, 10, 50, 100, 200]
+        list.remove(Integer.valueOf(30)); // O(n) -> Searches for 30 (not found, list stays same)
+
+        // --- SEARCH ---
+        boolean exists = list.contains(100);   // O(n)
+        int idx1 = list.indexOf(100);         // O(n) -> Returns 0
+        int idx2 = list.lastIndexOf(100);     // O(n) -> Returns 3
+
+        // --- UTILS ---
+        int size = list.size();          // O(1)
+        boolean isEmpty = list.isEmpty(); // O(1)
+
+        // --- READ OUT ---
+        System.out.println("Final List: " + list);
         
-       // list.set(1,100); //updating  //O(1)  [5, 100, 10],100
-
-        //list.addAll(list1);   //adding another list to this list
-        //list.addAll(list2);   // [5, 30, 10, 50, 100, 200],30
-
-       // list.remove(0); //O(n)
-        //list.remove(Integer.valueOf(30)); //removing by value  O(n)   [10],10
-
-       // boolean exists=list.contains(30); //O(n)
-       // int idx1=list.indexOf(30); //O(n)
-       // int idx2=list.lastIndexOf(30); //O(n)   [5, 30, 10],30
-
-       int size=list.size(); //O(1)
-       boolean isEmpty=list.isEmpty(); //O(1)
-
-
-
-
-        System.out.println(list);
-        System.out.println(list.get(1)); //O(1)
+        // Defensive check to avoid IndexOutOfBoundsException
+        if (list.size() > 1) {
+            System.out.println("Element at index 1: " + list.get(1)); // O(1)
+        } else {
+            System.out.println("List is too short to read index 1!");
+        }
     }
 }
