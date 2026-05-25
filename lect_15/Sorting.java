@@ -3,8 +3,7 @@ class Sorting1 {
         int c1=0;
         int c2=0;
         int c3=0;
-        int arr[]={2,0,2,1,1,0};
-        int[] nums = null;
+        int [] nums = null;
         for(int i : nums){  
             if(i==0){
                 c1++;
