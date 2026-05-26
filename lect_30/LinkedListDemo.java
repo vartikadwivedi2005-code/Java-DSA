@@ -76,6 +76,80 @@ class LinkedList {
         System.out.println("Element not found: " + key);
     }
 
+    // Method to reverse the Linked List
+   void reverse(){
+    Node temp = head;  // Head se shuruat karenge list ko traverse karne ke liye
+    Node prev = null;  // Yeh pointer aakhiri mein reversed list ka naya head banega
+    Node next = null;  // Agle node ka address safe rakhne ke liye temporary variable
+    
+    while(temp != null){   // Jab tak list ke khatam (null) hone tak loop chalega
+        next = temp.next;   // Link todne se pehle agle node ka address 'next' mein save kar lo
+        temp.next = prev;   // Current node ke pointer ko ulta karke pichle (prev) node par point kar do
+        prev = temp;        // 'prev' pointer ko ek kadam aage badha kar current node par le aao
+        temp = next;        // 'temp' pointer ko bhi ek kadam aage badha do (jo 'next' mein save kiya tha)
+    }
+    
+    head = prev; // Poori list reverse hone ke baad, 'prev' ko naya head bana doS
+}
+
+// Middle node using slow and fast pointer technique or tortoise and hare algorithm
+    void findMiddle() {
+        if (head == null) {
+            System.out.println("Linked List is empty.");
+            return;
+        }
+        
+        Node slow = head; // Slow pointer moves one step at a time
+        Node fast = head; // Fast pointer moves two steps at a time
+        
+        while (fast != null && fast.next != null) {
+            slow = slow.next;       // Move slow by one
+            fast = fast.next.next;  // Move fast by two
+        }
+        
+        // When fast reaches the end, slow will be at the middle
+        System.out.println("Middle element: " + slow.data);
+    }
+
+    // Cycle detection using Floyd’s Tortoise and Hare Algorithm
+    boolean hasCycle() {
+        if (head == null) {
+            return false; // An empty list cannot have a cycle
+        }
+        
+        Node slow = head; // Slow pointer moves one step at a time
+        Node fast = head; // Fast pointer moves two steps at a time
+        
+        while (fast != null && fast.next != null) {
+            slow = slow.next;       // Move slow by one
+            fast = fast.next.next;  // Move fast by two
+            
+            if (slow == fast) {     // If they meet, there is a cycle
+                return true;
+            }
+        }
+        
+        return false; // If fast reaches the end, there is no cycle
+    }
+
+    // Add a linked list in the middle (after a specific node)
+    void insertAfter(int key, int data) {
+        Node temp = head;
+        
+        // Traverse the list to find the node with the specified key
+        while (temp != null) {
+            if (temp.data == key) {
+                Node newnode = new Node(data);
+                newnode.next = temp.next; // Link new node to the next node
+                temp.next = newnode;      // Link current node to the new node
+                return; 
+            }
+            temp = temp.next;
+        }
+        
+        System.out.println("Element not found: " + key);
+    }
+
     // Method to traverse and print all elements in the list
     void display() {
         Node temp = head;
@@ -113,6 +187,19 @@ public class LinkedListDemo {
         System.out.println("\n--- Testing Search Feature ---");
         list.search(20);  // Output: Element found: 20
         list.search(100); // Output: Element not found: 100
+
+        System.out.println("\n--- Testing Reverse Feature ---");
+        list.reverse();
+        list.display(); // Output: 60 -> 50 -> 40 -> 30 -> 20 -> 10 -> null
+
+        System.out.println("\n--- Testing Insert After Feature ---");
+        list.insertAfter(30, 35); // Insert 35 after 30
+        list.display(); // Output: 60 -> 50 -> 40 -> 30 -> 35 -> 20 -> 10 -> null
+
+        System.out.println("\n--- Testing Find Middle Feature ---");
+        list.findMiddle(); // Output: Middle element: 30
+        list.display(); // Output: 60 -> 50 -> 40 -> 30 -> 35 -> 20 -> 10 -> null
+
     }
 }
 
