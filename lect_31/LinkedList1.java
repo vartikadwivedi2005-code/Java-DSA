@@ -167,3 +167,6 @@ public class LinkedList1 {
         list.findCycleStart(); // Output: Cycle ka starting node hai: 3
     }
 }
+
+
+// Tortoise and Hare Algorithm (Floyd’s Cycle Detection Algorithm) ke baare mein samajhne ke liye, yeh code ek linked list banata hai, usme kuch nodes add karta hai, aur phir cycle banata hai. Uske baad, woh cycle detect karta hai aur cycle ke starting node ko bhi dhundta hai. Is algorithm ka main idea yeh hai ki agar ek cycle exist karti hai, toh slow pointer (tortoise) aur fast pointer (hare) ek point par milenge. Jab woh milte hain, tab hum slow pointer ko head par le jaate hain aur dono pointers ko ek-ek step aage badhate hain, jab tak woh fir se nahi milte. Jahan woh milte hain, wahi cycle ka starting node hota hai.
