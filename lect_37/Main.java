@@ -10,6 +10,7 @@ package lect_37;
 
 
 class ListNode {
+    
     int val;
     ListNode next;
     ListNode(int val) { 
