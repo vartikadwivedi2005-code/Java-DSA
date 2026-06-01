@@ -33,7 +33,8 @@ class tortoise {
     }
 
     // 2. Cycle detect karna
-    boolean hasCycle() {
+    boolean hasCycle() 
+    {
         if (head == null) {
             return false; 
         }
